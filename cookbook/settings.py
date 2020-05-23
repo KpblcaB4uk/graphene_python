@@ -69,9 +69,6 @@ TEMPLATES = [
     },
 ]
 
-GRAPHENE = {
-    'SCHEMA': 'cookbook.schema.schema'
-}
 
 WSGI_APPLICATION = 'cookbook.wsgi.application'
 
