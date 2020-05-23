@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cookbook.ingredients'
+    'cookbook.ingredients',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,10 @@ TEMPLATES = [
         },
     },
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'cookbook.schema.schema'
+}
 
 WSGI_APPLICATION = 'cookbook.wsgi.application'
 
