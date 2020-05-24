@@ -15,7 +15,8 @@ class Query(object):
     category = graphene.Field(
         CategoryType,
         id=graphene.Int(),
-        name=graphene.String()
+        name=graphene.String(),
+        price=graphene.Int()
     )
     all_categories = graphene.List(CategoryType)
     all_ingredients = graphene.List(IngredientType)
@@ -23,7 +24,8 @@ class Query(object):
     ingredient = graphene.Field(
         IngredientType,
         id=graphene.Int(),
-        name=graphene.String()
+        name=graphene.String(),
+        price=graphene.Int()
     )
 
     def resolve_all_categories(self, info, **kwargs):
@@ -36,6 +38,7 @@ class Query(object):
     def resolve_category(self, info, **kwargs):
         id = kwargs.get('id')
         name = kwargs.get('name')
+        price = kwargs.get('price')
 
         if id is not None:
             return Category.objects.get(pk=id)
@@ -43,16 +46,23 @@ class Query(object):
         if name is not None:
             return Category.objects.get(name=name)
 
+        if price is not None:
+            return Ingredient.objects.get(price=price)
+
         return None
 
     def resolve_ingredient(self, info, **kwargs):
         id = kwargs.get('id')
         name = kwargs.get('name')
+        price = kwargs.get('price')
 
         if id is not None:
             return Ingredient.objects.get(pk=id)
 
         if name is not None:
             return Ingredient.objects.get(name=name)
+
+        if price is not None:
+            return Ingredient.objects.get(price=price)
 
         return None
